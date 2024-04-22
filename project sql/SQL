@@ -1,1 +1,69 @@
+-- Create tables
+CREATE TABLE customers (
+  customersid INT,
+  NAME TEXT,
+  AGE INT,
+  GENDER TEXT
+);
 
+INSERT INTO customers VALUES
+(1, 'beii', 40, 'male'),
+(2, 'petch', 30, 'Female'),
+(3, 'Jane', 50, 'Female'),
+(4, 'Fah', 25, 'Female');
+
+CREATE TABLE menus( 
+  customerid INT,
+  menuname TEXT,
+  price INT
+);
+
+INSERT INTO menus VALUES
+(1, 'double cheese', 300),
+(2, 'hawaiian', 350),
+(3, 'seafoodsupreme', 400),
+(4, 'tomatobacon', 500);
+
+CREATE TABLE Cust_order (
+  customersid INT,
+  paymentid INT,
+  orderdates TEXT
+);
+
+INSERT INTO Cust_order VALUES
+(1, 2, '01-01-2022'),
+(2, 3, '02-03-2022'),
+(3, 4, '03-04-2021'),
+(4, 5, '04-05-2020');
+
+-- Join tables 
+SELECT
+  customers.NAME,
+  customers.GENDER,
+  menus.menuname,
+  menus.price,
+  Cust_order.orderdates
+FROM customers 
+JOIN menus ON customers.customersid = menus.customerid
+JOIN Cust_order ON Cust_order.customersid = customers.customersid;
+
+-- Subquery 
+SELECT 
+  AGE,
+  GENDER
+FROM (SELECT * FROM customers WHERE AGE > 25) AS subcusorder
+WHERE GENDER = 'Female';
+
+-- Aggregation functions
+SELECT 
+  customers.NAME,
+  menus.menuname,
+  SUM(menus.price) AS Total_Price,
+  COUNT(Cust_order.orderdates) AS order_date
+FROM customers 
+JOIN menus ON customers.customersid = menus.customerid
+JOIN Cust_order ON Cust_order.customersid = customers.customersid
+WHERE menus.price > 300
+GROUP BY customers.NAME, menus.menuname
+ORDER BY Total_Price DESC
+LIMIT 3;
