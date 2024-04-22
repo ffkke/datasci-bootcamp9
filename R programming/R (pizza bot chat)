@@ -1,0 +1,90 @@
+#homework 2 : chat bot
+
+#creat menu
+chat_botpizza  <- function() {
+
+menu <- data.frame(
+  id = 1:5,
+  pizza = c("double cheese","hawaiian","seafood supreme","pepperoni","meat deluxe"),
+  price = c(100,150,200,250,300)
+)
+
+#greeting customer
+print ("Welcome to bot 67pizza")
+
+#choose services
+services <- c("1.order pizza","2.track order")
+print(services)
+
+flush.console()
+chat_bot <- readline("how can i assist you today sir?(1/2): ")
+
+#tracking order pizza
+
+if (chat_bot == 2 ) {
+  tracking <- readline( "Please insert your order number: ")
+  print("Thank you for choosing 67pizza we will contact you shortly") }
+
+#order pizza
+
+if (chat_bot == 1) {
+print("let start ordering pizza")
+
+#choose order option
+order_options <- c("1.via application","2.Self pick up")
+print(order_options)
+
+flush.console()
+options <- readline("choose your order sir (1/2):  ")
+
+if(options == 1 ){ 
+  name <- readline("insert name: ")
+  phone <- readline("input your phone number: ")
+  address <- readline("your address: ") }
+  else {
+  name <- readline("insert name: ")
+  phone <- readline("input your phone number: ")
+  }
+
+  #ordering pizza
+  total_price <- 0
+  total_order <- data.frame(
+  order_name = character (0),
+  order_quantity = numeric (0),
+  order_price = numeric(0) )
+
+  while (TRUE) {
+  print("here is our menu.")
+  print(menu,row.name = FALSE)
+
+  flush.console() 
+  orders <- as.integer( readline("choose your pizza from the list : "))
+  quantity <- as.integer(readline("Quantity: "))
+
+  #total order and price 
+  total_price <- menu[orders, 3] * quantity
+  total_order[nrow(total_order)+1,] <- data.frame(
+    order_name = menu[orders, 2],
+    order_quantity = quantity,
+    order_price = total_price )
+
+    print("your order is: ")
+    print(total_order)
+
+    #order more pizzas
+    flush.console()
+    Done_ordered <- readline("Anything else? (yes/no) : ")
+    if (Done_ordered %in% c("no", "No", "NO"))
+              break
+  }
+
+  #check out cart 
+  print("----------------------------------")
+  print("order summary is: ")
+  print(total_order)
+  print(paste("Total price is" , sum(as.numeric(total_order[ ,3]))))
+  print("Please proceed with the payment")
+  print("Thank you for your order!")
+  print("Enjoy your yummy pizzas!")
+  print("We are looking forward to service you again soon!") }
+}
