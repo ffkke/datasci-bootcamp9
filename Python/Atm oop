@@ -1,1 +1,39 @@
+#ATM OOP
+import random
 
+class ATM:
+    def __init__(self, bank_name, account_name, balance):
+        self.bank_name = bank_name
+        self.account_name = account_name
+        self.balance = balance
+
+    def __str__(self):
+        return f"This is your account info. \n bank_name: {self.bank_name} , \n account_name: {self.account_name}, \n balance: {self.balance} THB"
+
+    def check_balance(self):
+        print(f"Balance: {self.balance} THB")
+
+    def deposit(self, money):
+        self.balance += money
+        print(f"Deposit successfully: your new balance: {self.balance} THB")
+
+    def withdraw(self, money):
+        if self.balance >= money:
+            self.balance -= money
+            print(f"Withdraw successfully: your left balance: {self.balance} THB")
+            return self.balance
+        else:
+            print("Withdraw failed. Insufficient funds.")
+            return None
+
+    def transfer_money(self, receiver_account, amount):
+        if self.withdraw(amount) is not None:
+            receiver_account.deposit(amount)
+            print(f"Transfer of {amount} THB successful.")
+            return True
+        else:
+            print("Transfer failed. Insufficient funds.")
+            return False
+
+# Create first ATM account
+Acc = ATM("scb","ffkke",1000)
