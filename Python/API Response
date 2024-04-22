@@ -1,1 +1,59 @@
+#Get API from star wars API
+import csv
+import requests
 
+url = "https://api.tcgdex.net/v2/en/cards"
+response = requests.get(url)
+
+if response.status_code == 200:
+    data = response.json()
+    with open("pokemoncards.csv", mode="w", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerow(["id","localid","name"])
+
+        for character in data['results']:
+            id = character.get('id')
+            localid = character.get('localid')
+            name = character.get('name')
+            writer.writerow([id,localid,name])
+
+    print("Data successfully written to pokemoncards.csv")
+else:
+    print("API request failed")
+
+# Reading from the CSV file
+with open("pokemoncards.csv", mode="r", encoding="utf-8") as file:
+    reader = csv.reader(file)
+    for row in reader:
+        print(row)
+
+#Get API from Pokemon card X
+import csv
+import requests
+
+url = "https://api.tcgdex.net/v2/en/series"
+response = requests.get(url)
+
+if response.status_code == 200:
+    data = response.json()
+    with open("pokemoncards.csv", mode="w", newline="") as file:
+        writer = csv.writer(file)
+        # writer.writerow(["id", "localid","name","image"])
+        writer.writerow(["ID", "Series Name"])
+
+        for character in data:
+            id = character.get('id')
+            # localid = character.get('localid')
+            name = character.get('name')
+            # writer.writerow([id, localid, name])
+            writer.writerow([id, name])
+
+    print("Data successfully written to pokemoncards")
+else:
+    print("API request failed")
+
+# Reading from the CSV file
+with open("pokemoncards.csv", mode="r", encoding="utf-8") as file:
+    reader = csv.reader(file)
+    for row in reader:
+        print(row)
