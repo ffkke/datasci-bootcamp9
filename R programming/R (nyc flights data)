@@ -1,0 +1,30 @@
+#Question01 most distance flights on 2013
+f0 <- flights %>%
+select(sched_dep_time, dest) %>%
+group_by(dest) %>%
+count(sched_dep_time) %>%
+arrange(desc(sched_dep_time)) %>%
+head(10)
+#Question02 most destination that ppl go on a christmas
+f1 <- flights %>%
+select(month, dest) %>%
+filter(month == 12) %>%
+count(dest) %>%
+arrange(desc(n)) %>%
+head(10)
+#Question03 most delay flights and destination and months
+f2 <- flights %>%
+select(arr_delay, dest, month) %>%
+filter(month >= 1 & month <= 12) %>%
+group_by(dest) %>%
+count(arr_delay, dest, month) %>%
+head(5)
+#Quuestion04 what flight and airlines that use arr_time between 500 and 1500 
+f3 <- flights %>%
+select(arr_time,origin,dest,carrier)%>%
+filter(arr_time >= 500 | arr_time <= 1500)%>%
+group_by(carrier) %>%
+count(origin, dest, carrier) %>%
+arrange(desc(n)) %>%
+left_join(airlines)
+head(5)
