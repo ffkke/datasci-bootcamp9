@@ -1,4 +1,4 @@
-In this project im creating pizza restaurant by using sql code
+**In this project im creating pizza restaurant by using sql code**
 
 -- Create tables
 CREATE TABLE customers (
