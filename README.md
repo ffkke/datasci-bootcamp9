@@ -1,6 +1,7 @@
- datasci-bootcamp 9
- I'm learining data science bootcamp There are 10 sprints in the program
- 
+![S__102105109](https://github.com/ffkke/datasci-bootcamp9/assets/167752986/7181eb3b-3818-42c6-8ebd-bcb19f40b7f1)
+- :wave:	I'm Fluke i have strong passion in Data Science
+- 📧 you can contact me via siranon.fluke@gmail.com
+
 ## First part of the program
 
  - Intro to data science
@@ -18,4 +19,3 @@
 - Python programming
 - Essential Python for data analyst
 - Dashboard with looker studio
-- contact : siranon.fluke@gmail.com
