@@ -1,0 +1,67 @@
+import random
+
+def game():
+    # Set up match
+    your_score = 0
+    bot_score = 0
+
+    # Weapons
+    weapons = ["Rock", "Paper", "Scissor"]
+
+    # Open the game
+    player_name = input("Hello who are you? ")
+    print()
+    print("Hello " + player_name + ", Welcome to the Rock, Scissor, Paper FINAL Tournament!")
+    print()
+
+    while True:
+        bot_weapon = random.choice(weapons)
+
+        # Player turn: choose weapon
+        your_weapon = input("Choose your weapon (Rock, Paper, Scissor) or type 'Exit' to quit: ")
+
+        # Stop gaming
+        if your_weapon.lower() == "exit":
+            print()
+            print(f"Your Total Score is {your_score}")
+            print(f"Bot Total Score is {bot_score}")
+            print()
+            if your_score > bot_score:
+                print("Congratulations! You are the new champion!")
+            else:
+                print("You are NOT THE NEW CHAMPION OF PAO YING CHOOP!")
+            break
+
+        elif your_weapon.capitalize() in weapons:
+            if (your_weapon == "Rock" and bot_weapon == "Scissor") or \
+               (your_weapon == "Scissor" and bot_weapon == "Paper") or \
+               (your_weapon == "Paper" and bot_weapon == "Rock"):
+                your_score += 1
+                print()
+                print("You Win!")
+                print(f"Your Score is {your_score}")
+                print(f"Bot Score is {bot_score}")
+                print()
+
+            elif (your_weapon == "Rock" and bot_weapon == "Paper") or \
+                 (your_weapon == "Scissor" and bot_weapon == "Rock") or \
+                 (your_weapon == "Paper" and bot_weapon == "Scissor"):
+                bot_score += 1
+                print()
+                print("You Lose!")
+                print(f"Your Score is {your_score}")
+                print(f"Bot Score is {bot_score}")
+                print()
+
+            else:
+                print()
+                print("It's a Tie!")
+                print(f"Your Score is {your_score}")
+                print(f"Bot Score is {bot_score}")
+                print()
+
+        else:
+            print("Invalid input! Please choose again.")
+
+# Start the game
+game()
